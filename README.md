@@ -8,7 +8,7 @@ This project aims to automate the **invigilation** and **grading** processes of 
 
 1. **Real-time Monitoring**  
    Monitors webcam feed during the exam to detect suspicious behavior.
-
+un
 2. **Face Detection and Tracking**  
    Ensures the continuous presence of the candidate using facial recognition.
 
