@@ -34,24 +34,31 @@ un
 
 ### Frontend
 - HTML/CSS
-- JavaScript *(Optional if a UI is implemented)*
+- JavaScript 
 
 ### Backend and Machine Learning
 - **Language**: Python  
-- **Framework**: Flask / Django *(choose based on your preference)*
+- **Framework**: Flask / Django 
 - **Libraries**:
   - OpenCV
   - TensorFlow / PyTorch
   - scikit-learn
 
 ### Database
-- SQLite / MySQL / Firebase *(based on scalability needs)*
+- SQLite / MySQL / Firebase 
 
 ### Tools & Platforms
 - Git & GitHub
 - Jupyter Notebook
+- Visual Studio Code
 
 ---
 
 ## Project Structure (Example)
-
+.
+├── README.md
+├── SRS.doc
+└── use_cases
+    ├── Monitor Exam Session use case.png
+    ├── TakeOnlineExam_Usecase.png
+    └── evaluate_and_grade_exam_uc.png
