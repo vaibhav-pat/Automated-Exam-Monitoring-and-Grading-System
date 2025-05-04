@@ -1,0 +1,695 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{setspace}
+\usepackage{geometry}
+\geometry{margin=1in}
+\pagenumbering{gobble}
+
+% Title Page
+\begin{document}
+\begin{titlepage}
+    \centering
+    % College Logo Placeholder
+    \includegraphics[width=6cm]{logo.png} \\[2 cm]
+
+    {\Large \textbf{Indian Institute of Information Technology Allahabad}}\\[0.2cm]
+    {\large Department of Software Engineering}\\[1cm]
+
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    {\Huge \bfseries Software Requirements Specification (SRS)}\\[0.3cm]
+    {\Large \bfseries Automated Exam Monitoring and Grading System}\\[0.4cm]
+    \rule{\linewidth}{0.5mm} \\[1.5cm]
+
+    \begin{flushleft}
+    \textbf{Submitted by:}\\
+    Aman Jaiswal - MSE2024010 \\
+    Vaibhav Patidar - MSE2024009 \\
+    Pratik Rathod - MSE2024004\\
+    
+    \end{flushleft}
+
+    \vspace{1cm}
+
+    \begin{flushleft}
+    \textbf{Under the Guidance of:}\\
+    Dr. Gaurav Srivastava \\
+    Assistant Professor, Department of Software Engineering
+    \end{flushleft}
+
+    \vfill
+    \begin{center}
+    \textbf{Academic Year: 2025 (2nd semester )}
+    \end{center}
+\end{titlepage}
+
+\pagenumbering{arabic} 
+\section*{Table of Contents}
+\begin{flushleft}
+\textbf{1. Revision History} \dotfill \textbf{2} \\
+
+\textbf{2. Introduction} \dotfill \textbf{3} \\
+\hspace{1em}1.1 Purpose \dotfill 3 \\
+\hspace{1em}1.2 Document Conventions \dotfill 3 \\
+\hspace{1em}1.3 Intended Audience and Reading Suggestions \dotfill 3 \\
+\hspace{1em}1.4 Product Scope \dotfill 4 \\
+\hspace{1em}1.5 References \dotfill 4 \\
+
+\textbf{3. Overall Description} \dotfill 5 \\
+\hspace{1em}3.1 Product Perspective \dotfill 5 \\
+\hspace{1em}3.2 Product Functions \dotfill 5 \\
+\hspace{1em}3.3 User Classes and Characteristics \dotfill 6 \\
+\hspace{1em}3.4 Operating Environment \dotfill 6 \\
+\hspace{1em}3.5 Design and Implementation Constraints \dotfill 6 \\
+\hspace{1em}3.6 User Documentation \dotfill 7 \\
+\hspace{1em}3.7 Assumptions and Dependencies \dotfill 7 \\
+
+\textbf{4. External Interface Requirements} \dotfill 8 \\
+\hspace{1em}4.1 User Interfaces \dotfill 8 \\
+\hspace{1em}4.2 Hardware Interfaces \dotfill 9 \\
+\hspace{1em}4.3 Software Interfaces \dotfill 9 \\
+\hspace{1em}4.4 Communications Interfaces \dotfill 9\\
+
+\textbf{5. System Features} \dotfill 11 \\
+\hspace{1em}5.1 Take Online Exam \dotfill 11 \\
+\hspace{1em}5.2 Monitor Exam Session \dotfill 11 \\
+\hspace{1em}5.3 Evaluate and Grade Exam \dotfill 12 \\
+\hspace{1em}5.4 Manage Users and Roles \dotfill 12\\
+\hspace{1em}5.5 Exam Management \dotfill 12 \\
+
+\textbf{6. Other Nonfunctional Requirements} \dotfill 14 \\
+\hspace{1em}6.1 Performance Requirements \dotfill 14 \\
+\hspace{1em}6.2 Safety Requirements \dotfill 14 \\
+\hspace{1em}6.3 Security Requirements \dotfill 14 \\
+\hspace{1em}6.4 Software Quality Attributes \dotfill 15 \\
+\hspace{1em}6.5 Business Rules \dotfill 15 \\
+
+\textbf{7. Other Requirements} \dotfill 16 \\
+
+\textbf{Appendices} \\
+\hspace{1em}Appendix A: Glossary \dotfill 17 \\
+\hspace{1em}Appendix B: Analysis Models \dotfill 18 \\
+\hspace{1em}Appendix C: To Be Determined List \dotfill 23 \\
+\end{flushleft}
+
+\newpage
+\section{Revision History}
+\begin{table}[h]
+    \centering
+    
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Author} & \textbf{Date} & \textbf{Reason for Change} & \textbf{Version} \\
+        \hline
+        vaibhav-pat & 2025-04-04 & Initial commit & 0.0 \\
+        \hline
+        vaibhav-pat & 2025-04-04 & Added features in README & 0.1 \\
+        \hline
+        vaibhav-pat & 2025-04-04 & Added technologies to README & 0.11 \\
+        \hline
+        vaibhav-pat & 2025-04-04 & Updated README.md & 0.12 \\
+        \hline
+        amanSjaiswal & 2025-04-22 & Added introduction & 0.2 \\
+        \hline
+        Pratikrathod1632 & 2025-05-03 & Add files via upload & 0.3\\
+        \hline
+        vaibhav-pat & 2025-05-04 & Added use case: Monitor Exam Session & 0.4 \\
+        \hline
+        amanSjaiswal & 2025-05-04 & Added evaluate and grade exam use case & 0.5 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Deleted previous TakeOnline use case & 0.51\\
+        \hline
+        Pratikrathod1632 & 2025-05-04 & Updated file & 0.6 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Updated README.md file & 0.13 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Updated README.md file & 0.14 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Created a separate section for each use case & 0.7 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Updated README.md file & 0.15 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Updated README.md file & 0.16 \\
+        \hline
+        amanSjaiswal & 2025-05-04 & Class diagram of system & 0.8 \\
+        \hline
+        amanSjaiswal & 2025-05-04 & Final class diagram & 0.9 \\
+        \hline
+        vaibhav-pat & 2025-05-04 & Added SRS & 1.0 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+
+% Main Document Starts
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this Software Requirements Specification (SRS) document is to provide a detailed description of the Automated Exam Monitoring and Grading System. It outlines the functional and non-functional requirements, system features, and design constraints that define the system's behavior and structure. This system is designed to streamline and automate the process of conducting online exams by enabling real-time monitoring to prevent malpractice and facilitating efficient evaluation and grading of responses. The document serves as a reference for developers, testers, project managers, and stakeholders throughout the software development lifecycle.
+
+\subsection{Document Conventions}
+This document follows certain conventions for clarity and consistency:
+
+\begin{itemize}
+    \item Requirements are labeled as FR-x for Functional Requirements and NFR-x for Non-Functional Requirements.
+    \item UML diagrams are used to model the system’s behavior and structure.
+    \item Actors are depicted using stick figures in use case diagrams.
+    \item Class names follow the CamelCase naming convention.
+    \item Italics are used to refer to system modules or subsystems.
+\end{itemize}
+
+\subsection{Intended Audience and Reading Suggestions}
+This document is intended for the following readers:
+
+\begin{itemize}
+    \item Developers – to understand system functionalities and component interactions.
+    \item Testers – to create test cases based on the defined requirements.
+    \item Project Managers – to track progress and ensure implementation completeness.
+    \item Clients and Stakeholders – to verify that the system meets specified expectations.
+    \item UI/UX Designers – to design user interfaces that align with the functional flow.
+\end{itemize}
+
+Readers are encouraged to begin with the overall description to understand the context of the system, and then proceed to system features and interface requirements for deeper insights.
+
+\subsection{Product Scope}
+The Automated Exam Monitoring and Grading System is a web-based application designed to facilitate secure and efficient online assessments. It provides features such as exam creation and scheduling, real-time monitoring of students via webcam and screen capture, and AI-powered cheating detection mechanisms. The system automates the evaluation and grading process and supports immediate result generation with performance analytics. It accommodates various assessment types, both objective and subjective, and is suitable for institutions, universities, and online learning platforms seeking a scalable and secure testing environment.
+
+\subsection{References}
+\begin{itemize}
+    \item IEEE Std 830-1998 – IEEE Recommended Practice for Software Requirements Specifications
+    \item UML 2.5 Specification – Object Management Group (OMG)
+    \item Institution/University guidelines on exam policies (if applicable)
+    \item Research papers and tools related to AI-based proctoring (e.g., OpenCV, MediaPipe)
+    \item Online Assessment Standards and Privacy Regulations (e.g., GDPR, FERPA)
+\end{itemize}
+
+\newpage
+\begin{document}
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+The Automated Exam Monitoring and Grading System is a standalone, web-based solution designed to support the entire lifecycle of online examinations, ranging from exam creation to real-time monitoring and automated grading. The system integrates artificial intelligence techniques to enhance the reliability and efficiency of assessments conducted in remote environments. While it is capable of functioning independently, it is also designed to integrate seamlessly with existing Learning Management Systems (LMS) such as Moodle or Canvas, thereby extending its utility in academic institutions.
+
+The system architecture comprises the following core modules:
+\begin{itemize}
+    \item \textbf{Exam Management Module} – Handles the creation, scheduling, and publishing of exams.
+    \item \textbf{Monitoring Module} – Enables real-time proctoring using webcam, microphone, and screen activity tracking.
+    \item \textbf{Evaluation Module} – Supports automatic evaluation of objective-type questions and facilitates manual or assisted grading of subjective responses.
+    \item \textbf{User Management Module} – Manages different user roles including students, instructors, and proctors.
+\end{itemize}
+
+\subsection{Product Functions}
+The system offers a comprehensive set of functionalities to support secure and streamlined online assessments. These include:
+
+\begin{itemize}
+    \item Secure user authentication with role-based access control.
+    \item Creation, editing, and scheduling of exams.
+    \item Delivery of question papers within a controlled environment.
+    \item Live monitoring of examinees using webcam feeds and screen activity tracking.
+    \item Detection and logging of suspicious behaviors such as a missing face, presence of multiple individuals, or unusual background noise.
+    \item Automatic evaluation of multiple-choice and numeric-response questions.
+    \item A dedicated interface for instructors to manually assess subjective answers.
+    \item Generation of detailed scorecards along with performance analytics.
+    \item Export capabilities for results and monitoring logs in various formats.
+\end{itemize}
+
+\subsection{User Classes and Characteristics}
+The system is designed to accommodate different types of users, each with specific responsibilities and requirements:
+
+\begin{itemize}
+    \item \textbf{Students}: These are the primary users who will take the online exams. They are expected to have a reliable internet connection, access to a webcam and microphone, and basic proficiency in operating a computer.
+    \item \textbf{Instructors}: Responsible for exam creation and grading. While they may also participate in live monitoring, this is not mandatory.
+    \item \textbf{Proctors/Monitors}: Tasked with supervising exam sessions either in real time or by reviewing flagged activities after the exam.
+    \item \textbf{Administrators}: Oversee system configuration, manage user accounts and roles, schedule exams, and generate institutional-level reports.
+\end{itemize}
+
+\subsection{Operating Environment}
+The system operates in a standard web-based environment, with components designed for compatibility and scalability. Key technical specifications include:
+
+\begin{itemize}
+    \item \textbf{Frontend}: Web-based interface accessible via modern browsers such as Chrome, Firefox, and Safari.
+    \item \textbf{Backend}: Hosted on cloud platforms or institutional servers, with support for Node.js, Python, or Java-based services.
+    \item \textbf{Database}: Compatible with relational and NoSQL databases including MySQL, PostgreSQL, and MongoDB.
+    \item \textbf{AI/Monitoring Engine}: Powered by Python modules utilizing libraries such as OpenCV and TensorFlow.
+    \item \textbf{Network Requirements}: Stable internet connectivity is essential for both students and faculty during exam sessions.
+\end{itemize}
+
+\subsection{Design and Implementation Constraints}
+Several constraints influence the design and deployment of the system. It must adhere to data privacy regulations such as GDPR, particularly in relation to webcam and microphone access. The platform should perform reliably across diverse hardware configurations, including laptops and desktops, and must be capable of scaling to accommodate large numbers of simultaneous users. It is also important to note that the effectiveness of AI-based monitoring may vary depending on factors such as lighting conditions and device capabilities.
+
+\subsection{User Documentation}
+To support users in effectively operating the system, comprehensive documentation will be provided. This includes:
+
+\begin{itemize}
+    \item User manuals tailored for different user roles (Students, Instructors, Proctors, and Administrators).
+    \item Contextual help features and tooltips embedded in the user interface.
+    \item Step-by-step video walkthroughs demonstrating system setup and usage.
+    \item A frequently asked questions (FAQ) section and a troubleshooting guide.
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+The successful functioning of the system relies on certain assumptions and external dependencies. It is assumed that all users will have access to devices equipped with a functional webcam and microphone. A stable internet connection is considered a prerequisite to ensure uninterrupted exam monitoring. Unless AI-based grading is integrated for subjective responses, instructors are expected to manually evaluate them. Furthermore, the system assumes institutional support in enforcing examination policies and addressing grievances raised by users.
+
+\newpage
+\section{External Interface Requirements}
+
+\subsection{User Interfaces}
+The system provides a set of responsive, web-based user interfaces tailored to different user roles, ensuring ease of use, clarity, and seamless interaction across devices. Each interface is optimized for the specific needs and workflows of its user class.
+
+\subsubsection{Student Interface}
+Students will interact with the system through a streamlined series of views, including:
+\begin{itemize}
+    \item A login and registration screen.
+    \item A page displaying exam instructions and institutional rules.
+    \item A system check module for webcam and microphone access validation.
+    \item A live exam interface comprising a question viewer, navigation controls, and an exam timer.
+    \item A submission confirmation page and a post-exam feedback section.
+\end{itemize}
+
+\subsubsection{Instructor Interface}
+Instructors are provided with comprehensive tools to manage and evaluate examinations:
+\begin{itemize}
+    \item A dashboard for creating, editing, and scheduling exams.
+    \item A manual grading panel for evaluating subjective responses.
+    \item A review interface for examining flagged activities during exams.
+    \item Access to student performance analytics and result reports.
+\end{itemize}
+
+\subsubsection{Proctor Interface}
+Proctors are equipped with functionalities to monitor examinees effectively in real time:
+\begin{itemize}
+    \item A live monitoring dashboard displaying multiple candidates simultaneously.
+    \item Instant alerts for suspicious behavior such as face absence or audio anomalies.
+    \item Controls to message or remove candidates from an exam session.
+    \item A panel to review activity logs after the exam concludes.
+\end{itemize}
+
+\subsubsection{Admin Interface}
+Administrators are granted access to higher-level system functions, including:
+\begin{itemize}
+    \item User and role management tools.
+    \item System configuration and maintenance options.
+    \item Utilities for exporting logs, grading data, and audit records.
+\end{itemize}
+
+\subsection{Hardware Interfaces}
+
+\subsubsection{Student Systems}
+The system requires standard hardware configurations for student-side compatibility:
+\begin{itemize}
+    \item A webcam with a minimum resolution of 720p and a functioning microphone.
+    \item Desktop or laptop computers with a standard keyboard and mouse.
+    \item Support for video and audio capture through a web browser using WebRTC technology.
+\end{itemize}
+
+\subsubsection{Server Infrastructure}
+The backend infrastructure must support scalable performance and real-time monitoring:
+\begin{itemize}
+    \item Cloud-hosted or on-premise servers capable of processing concurrent video streams.
+    \item GPU acceleration is recommended to facilitate AI-powered monitoring features.
+\end{itemize}
+
+\subsection{Software Interfaces}
+The system is designed to operate across commonly used platforms and relies on a range of third-party tools and APIs for core functionalities.
+
+\begin{itemize}
+    \item \textbf{Operating Systems}: Compatible with the latest two versions of Windows, macOS, and Linux.
+    \item \textbf{Web Browsers}: Fully supported on the latest releases of Google Chrome, Mozilla Firefox, and Microsoft Edge.
+\end{itemize}
+
+\subsubsection{Integrated Libraries and APIs}
+The system will leverage various integrated libraries and APIs for key features:
+\begin{itemize}
+    \item \textbf{OpenCV}, \textbf{MediaPipe}, and \textbf{TensorFlow} for facial detection and behavior analysis.
+    \item \textbf{WebRTC} for secure, browser-based audio and video communication.
+    \item \textbf{MySQL}, \textbf{PostgreSQL}, or \textbf{MongoDB} as supported database backends.
+    \item \textbf{OAuth 2.0} or institution-specific Single Sign-On (SSO) for secure user authentication.
+\end{itemize}
+
+\subsection{Communications Interfaces}
+
+\subsubsection{Internet Connectivity}
+A stable and consistent internet connection is required for uninterrupted exam sessions:
+\begin{itemize}
+    \item Minimum required bandwidth is 2 Mbps for both upload and download.
+    \item Continuous connectivity must be maintained throughout the examination period.
+\end{itemize}
+
+\subsubsection{Data Transmission Protocols}
+Secure and real-time data exchange is facilitated using:
+\begin{itemize}
+    \item \textbf{HTTPS} for all data communications to ensure encryption and security.
+    \item \textbf{WebSocket} or \textbf{WebRTC} protocols for transmitting real-time video and audio streams.
+    \item \textbf{RESTful APIs} to handle backend interactions, including fetching exams, submitting answers, and logging events.
+\end{itemize}
+
+\newpage
+\section{System Features}
+
+\subsection{Take Online Exam}
+This feature enables students to securely participate in exams through an intuitive, browser-based interface. The process is carefully structured to ensure a smooth and secure experience, encompassing login authentication, instructions acknowledgment, question navigation, timed progression, and seamless submission. The system ensures that no exam is left incomplete by implementing an automatic submission mechanism once the allotted time expires.
+
+\textbf{Functional Requirements:}
+
+\begin{itemize}
+    \item \textbf{FR1.1 – User Authentication:} The system shall require students to log in using valid credentials before accessing any examination content.
+    \item \textbf{FR1.2 – Display Instructions:} Prior to the start of the exam, the system shall present exam-specific instructions and behavioral rules to the student.
+    \item \textbf{FR1.3 – Load Exam Questions:} The system shall retrieve and display questions based on the settings defined by the instructor or exam administrator.
+    \item \textbf{FR1.4 – Question Navigation and Answering:} Students shall be able to navigate between questions, record their answers, and revise responses at any point until submission.
+    \item \textbf{FR1.5 – Auto Submission on Timeout:} Once the exam duration expires, the system shall automatically submit the student's responses.
+    \item \textbf{FR1.6 – Submission Confirmation:} A visual confirmation message shall be displayed to confirm successful submission of the exam.
+\end{itemize}
+
+\subsection{Monitor Exam Session}
+To uphold academic integrity, this feature offers real-time monitoring of candidates through video and audio streams. It integrates AI-based facial recognition and anomaly detection to flag suspicious behaviors such as missing candidates, multiple faces, or unexpected audio signals. These events are logged and notified to human proctors who can intervene during or after the session.
+
+\textbf{Functional Requirements:}
+
+\begin{itemize}
+    \item \textbf{FR2.1 – Activate Monitoring Tools:} The system shall activate the student's webcam and microphone before the exam begins for continuous monitoring.
+    \item \textbf{FR2.2 – Detect Anomalies:} The monitoring module shall detect and log issues such as face absence, multiple faces, and abnormal background sounds.
+    \item \textbf{FR2.3 – Real-time Alerts:} Detected anomalies shall trigger alerts in real time, allowing proctors to respond promptly.
+    \item \textbf{FR2.4 – Proctor Viewing Panel:} Proctors shall be provided with a dashboard showing live video feeds and flagged events for active or post-exam review.
+    \item \textbf{FR2.5 – Logging and Auditing:} All monitoring logs, including timestamps and flagged anomalies, shall be securely stored for audit and investigation purposes.
+\end{itemize}
+
+\subsection{Evaluate and Grade Exam}
+This feature streamlines the evaluation process by automatically grading objective questions and offering instructors a comprehensive grading interface for subjective responses. Instructors can adjust scores manually and generate detailed performance reports for each student.
+
+\textbf{Functional Requirements:}
+
+\begin{itemize}
+    \item \textbf{FR3.1 – Auto Grading for Objective Questions:} The system shall automatically evaluate and score questions such as multiple-choice and numeric entries using predefined answer keys.
+    \item \textbf{FR3.2 – Manual Grading Interface:} Instructors shall be able to assess subjective responses using a grading dashboard designed for efficiency and clarity.
+    \item \textbf{FR3.3 – Score Override:} Instructors shall have the ability to override automatically calculated scores when needed.
+    \item \textbf{FR3.4 – Final Score Calculation:} The system shall compute the final grade by aggregating both automatically and manually assigned scores and store it in the student’s record.
+    \item \textbf{FR3.5 – Report Generation:} Grade reports and performance analytics shall be generated by the system and made available in downloadable formats.
+\end{itemize}
+
+\subsection{Manage Users and Roles}
+User and role management ensures secure and structured access to system functionalities. This feature allows administrators to define roles and responsibilities, enforce access permissions, and maintain comprehensive audit trails of all system interactions.
+
+\textbf{Functional Requirements:}
+
+\begin{itemize}
+    \item \textbf{FR4.1 – User Account Management:} Administrators shall have the ability to create, update, and delete user accounts as needed.
+    \item \textbf{FR4.2 – Role Assignment:} The system shall support predefined roles—Student, Instructor, Proctor, and Admin—and allow role assignment accordingly.
+    \item \textbf{FR4.3 – Role-based Access Control:} Access to system functionalities shall be granted or restricted based on each user’s role.
+    \item \textbf{FR4.4 – Activity Logging:} The system shall track and store user activities to support transparency and accountability.
+\end{itemize}
+
+\subsection{Exam Management}
+This feature empowers instructors and administrators to create and publish exams with a wide range of customization options. It includes support for diverse question types, question randomization, precise scheduling, and notification broadcasting to students.
+
+\textbf{Functional Requirements:}
+
+\begin{itemize}
+    \item \textbf{FR5.1 – Exam Creation:} Instructors shall be able to design exams using various question types, including multiple-choice, short-answer, and essay-style formats.
+    \item \textbf{FR5.2 – Question Bank and Randomization:} The system shall support the use of question banks and enable randomized question sets for individual students to discourage cheating.
+    \item \textbf{FR5.3 – Scheduling:} Exam start/end times and durations shall be configurable by the instructor at the time of exam creation.
+    \item \textbf{FR5.4 – Exam Notifications:} Registered students shall receive system-generated notifications once an exam has been published.
+\end{itemize}
+\newpage
+\section{Other Nonfunctional Requirements}
+
+\subsection{Performance Requirements}
+To ensure a seamless experience for users during high-stakes examinations, the system must meet specific performance benchmarks:
+
+\begin{itemize}
+    \item \textbf{NFR1 – Concurrent User Support:} The system shall support a minimum of 1,000 concurrent users without noticeable degradation in responsiveness or stability, maintaining consistent performance under peak loads.
+    \item \textbf{NFR2 – Auto-Grading Response Time:} The system shall return results for objective-type questions within 5 seconds after submission, ensuring prompt feedback to students.
+    \item \textbf{NFR3 – Real-Time Monitoring Performance:} The system’s video and audio monitoring capabilities shall maintain a minimum frame rate of 15 fps under standard network conditions to facilitate effective and reliable proctoring.
+    \item \textbf{NFR4 – System Availability During Exams:} The system shall provide an uptime of at least 99.5\% during scheduled exam periods to ensure that services are continuously accessible without interruptions.
+\end{itemize}
+
+\subsection{Safety Requirements}
+The system shall incorporate safety protocols to protect data integrity, prevent data loss, and safeguard user privacy during exam sessions:
+
+\begin{itemize}
+    \item \textbf{NFR5 – Privacy of Monitoring Data:} Live video and audio streams shall be accessible only to authorized personnel (i.e., assigned proctors and administrators) to preserve student privacy and comply with institutional and legal guidelines.
+    \item \textbf{NFR6 – Auto-Save on System Failure:} In the event of a system crash or abnormal shutdown during an exam, the system shall automatically save all current student responses and immediately notify the administrator.
+    \item \textbf{NFR7 – Consent for Device Access:} Before accessing a student’s webcam or microphone, the system shall explicitly notify the user and obtain their consent, in alignment with digital privacy norms and applicable data protection laws.
+\end{itemize}
+
+\subsection{Security Requirements}
+Strong security measures are essential for maintaining trust, protecting sensitive data, and ensuring the authenticity of examination processes:
+
+\begin{itemize}
+    \item \textbf{NFR8 – Data Encryption:} All sensitive information—including user credentials, exam content, and results—shall be encrypted both in transit (using HTTPS) and at rest (using robust encryption algorithms).
+    \item \textbf{NFR9 – Role-Based Access Control (RBAC):} The system shall enforce RBAC to ensure that access to data and functionalities is appropriately restricted based on the user’s role (e.g., Student, Instructor, Proctor, Admin).
+    \item \textbf{NFR10 – Login Attempt Limitation:} The system shall limit failed login attempts to five (5). Exceeding this limit shall lock the account for 30 minutes, mitigating brute-force attack risks.
+    \item \textbf{NFR11 – Audit Logging:} All critical user activities—such as login attempts, exam submissions, grading actions, and system setting modifications—shall be logged for auditing and traceability purposes.
+\end{itemize}
+
+\subsection{Software Quality Attributes}
+To deliver a robust and dependable system, the software shall be built upon key quality attributes:
+
+\begin{itemize}
+    \item \textbf{Availability:} The system shall be available 24/7, except during scheduled maintenance, to support users from different time zones and ensure uninterrupted access.
+    \item \textbf{Scalability:} The software architecture shall support horizontal scalability, allowing for seamless addition of servers to handle increased loads and user traffic without affecting performance.
+    \item \textbf{Usability:} The user interface shall be intuitive and user-friendly, designed to accommodate users with basic computer and digital literacy skills, reducing learning overhead.
+    \item \textbf{Maintainability:} The system shall employ a modular design, enabling easy updates, maintenance, and integration of additional plugins or external modules (e.g., AI-based proctoring, analytics).
+    \item \textbf{Portability:} The application shall be cross-platform compatible (including Windows, Linux, and macOS) and function effectively across all major modern web browsers such as Chrome, Firefox, Microsoft Edge, and Safari.
+\end{itemize}
+
+\subsection{Business Rules}
+To support consistent enforcement of institutional policies and maintain academic integrity, the system shall adhere to the following business rules:
+
+\begin{itemize}
+    \item \textbf{NFR12 – Student Verification:} Only students who are registered and institutionally verified shall be permitted to access and participate in any online examination.
+    \item \textbf{NFR13 – Proctor Authorization:} Only authorized institution-assigned staff members with valid credentials shall be allowed to act as proctors during any exam session.
+    \item \textbf{NFR14 – Grading Deadline:} All submitted exams must be graded and the results published within seven (7) days following the conclusion of the exam.
+    \item \textbf{NFR15 – Anomaly Threshold for Review:} If a student is flagged more than three (3) times for suspicious behavior during an exam, their session shall be automatically escalated for manual review by the designated proctor or administrator.
+\end{itemize}
+
+\section{Other Requirements}
+
+This section outlines additional requirements that ensure the system aligns with legal standards, institutional policies, and technical constraints not covered in earlier sections.
+
+\begin{itemize}
+    \item \textbf{OR1 – Legal and Policy Compliance:} The system shall comply with all relevant institutional academic integrity policies and applicable data protection regulations, such as the General Data Protection Regulation (GDPR). This includes proper handling of user consent, data retention policies, and rights to access or erase personal information. Compliance must be ensured both during development and throughout the system’s operational lifecycle.
+    
+    \item \textbf{OR2 – Time Synchronization:} To ensure fairness in examination scheduling, the system shall implement real-time synchronization between all client devices and the central server. This mechanism shall ensure that exam start and end times remain consistent, regardless of the user's geographic location or device clock settings.
+    
+    \item \textbf{OR3 – Log Retention Policy:} All system-generated logs—including user activity logs, monitoring records, and proctoring alerts—shall be securely retained for a minimum duration of six (6) months. This retention period supports regulatory audits, academic appeals, and internal investigations as needed.
+    
+    \item \textbf{OR4 – Exportable Logs:} The system shall provide functionality to export monitoring data, user interaction logs, and proctoring notes in widely supported formats such as CSV or JSON. This ensures compatibility with external reporting tools and enables institutional stakeholders to perform in-depth analysis or archival.
+    
+    \item \textbf{OR5 – Platform Accessibility Constraints:} To maintain exam integrity and ensure a standardized testing environment, the system shall support full access via desktop and tablet devices (equipped with modern operating systems and browsers). However, access from mobile phones shall be restricted, as these devices present higher risks for academic dishonesty and are less conducive to secure proctoring.
+\end{itemize}
+\newpage
+
+\appendix
+\section*{Appendix A: Glossary}
+
+This section provides definitions of key terms used throughout the Software Requirements Specification to ensure clarity and a shared understanding among all stakeholders.
+
+\vspace{1em}
+
+\textbf{Proctor:}  
+An individual, typically assigned by the institution, responsible for overseeing and monitoring students during an examination to ensure compliance with academic integrity guidelines.
+
+\vspace{1em}
+
+\textbf{Flagged Activity:}  
+Any event automatically or manually identified as suspicious or potentially violating examination rules—such as multiple faces on camera, prolonged absence, or unusual background noise—requiring review by a proctor or administrator.
+
+\vspace{1em}
+
+\textbf{Auto-Grading:}  
+A system-driven mechanism that evaluates objective-type questions (e.g., multiple-choice, true/false, numeric responses) by comparing student responses to a predefined answer key, eliminating the need for manual intervention.
+
+\vspace{1em}
+
+\textbf{Subjective Grading:}  
+The manual evaluation process applied to responses that require critical thinking or elaboration—such as short answers or essays—performed by instructors based on rubrics or qualitative judgment.
+
+\vspace{1em}
+
+\textbf{Role-Based Access:}  
+A security and access control strategy wherein system permissions and functionalities are granted based on the user’s role (e.g., Student, Instructor, Proctor, Admin), ensuring appropriate and restricted access to data and actions.
+
+\vspace{1em}
+
+\textbf{Exam Session:}  
+A defined time period during which a student attempts and completes an examination. The session begins when the student starts the exam and ends upon submission or expiration of the allotted time.
+
+\newpage
+\appendix
+\section*{Appendix B: Analysis Models}
+
+\subsection*{B.1 Use Case Diagrams}
+
+\subsubsection*{B.1.1 Use Case: Take Online Exam}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.95\textwidth]{TakeOnlineExam_Usecase.png}
+  \caption{Use Case: Take Online Exam}
+  \label{fig:usecase_take_exam}
+\end{figure}
+
+\textbf{Description:}  
+Depicts the student’s interaction with the system during an exam session, covering the complete process from login to submission.
+
+\textbf{Actors:}
+\begin{itemize}
+    \item Student
+    \item Exam System
+\end{itemize}
+
+\textbf{Key Functionalities:}
+\begin{itemize}
+    \item Secure authentication and login
+    \item Display of instructions and questions
+    \item Real-time time tracking with auto-submit on timeout
+    \item Confirmation message upon successful submission
+\end{itemize}
+
+\vspace{0.5em}
+\vspace{1em}
+\newpage
+\subsubsection*{B.1.2 Use Case: Monitor Exam Session}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1.05\textwidth]{Monitor Exam Session use case.png}
+  \caption{Use Case: Monitor Exam Session}
+  \label{fig:usecase_take_exam}
+\end{figure}
+\textbf{Description:}  
+Shows the collaborative monitoring of the exam session using both AI-based detection and manual intervention by the proctor.
+
+\textbf{Actors:}
+\begin{itemize}
+    \item Student
+    \item Proctor
+    \item Monitoring Module
+\end{itemize}
+
+\textbf{Key Functionalities:}
+\begin{itemize}
+    \item Live webcam and microphone streaming
+    \item AI-driven anomaly detection (e.g., multiple faces, noise)
+    \item Event logging and alert generation
+    \item Real-time oversight and manual intervention by proctors
+\end{itemize}
+
+\vspace{0.5em}
+\vspace{1em}
+\newpage
+\subsubsection*{B.1.3 Use Case: Evaluate and Grade Exam}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1.15\textwidth]{evaluate_and_grade_exam_uc.png}
+  \caption{Use Case: Evaluate and Grade Exam}
+  \label{fig:usecase_take_exam}
+\end{figure}
+
+\textbf{Description:}  
+Illustrates the grading process post-exam submission, including automatic evaluation of objective answers and manual grading of subjective ones.
+
+\textbf{Actors:}
+\begin{itemize}
+    \item Instructor
+    \item Student
+    \item Exam Grading Module
+\end{itemize}
+
+\textbf{Key Functionalities:}
+\begin{itemize}
+    \item Auto-grading for objective-type questions
+    \item Manual grading interface for essays and long answers
+    \item Override mechanism for grading corrections
+    \item Final report generation and publishing
+\end{itemize}
+
+\vspace{0.5em}
+
+\vspace{2em}
+\newpage
+\subsection*{B.2 Class Diagram}
+
+\textbf{Description:}  
+The class diagram provides a static representation of the system’s structure, illustrating its key classes, attributes, methods, and interrelationships.
+
+\textbf{Key Classes and Responsibilities:}
+\begin{itemize}
+    \item \textbf{User} – Abstract class with shared attributes (name, email, userID, role). Specialized into: Student, Instructor, Proctor, Admin.
+    \item \textbf{Exam} – Attributes: examID, title, duration, startTime, endTime, questionList. Linked to one or more Question objects.
+    \item \textbf{Question} – Supports various types (MCQ, Subjective, True/False). Contains questionID, text, options, correctAnswer, and grading schema.
+    \item \textbf{ExamAttempt} – Records student responses and submission time. Connected one-to-one with Student.
+    \item \textbf{ProctoringModule} – Performs real-time video/audio analysis, logs anomalies, and generates alerts.
+    \item \textbf{GradingModule} – Handles both automated and manual grading workflows.
+    \item \textbf{Report} – Generates result summaries and detailed performance breakdowns. Aggregates results from GradingModule.
+    \item \textbf{Log} – Stores all user actions, system events, and monitoring records for audit trails.
+\end{itemize}
+\textbf{Key Classes and Responsibilities:}
+\begin{itemize}
+    \item \textbf{User} – Abstract class with shared attributes (name, email, userID, role). Specialized into: Student, Instructor, Proctor, Admin.
+    \item \textbf{Exam} – Attributes: examID, title, duration, startTime, endTime, questionList. Linked to one or more Question objects.
+    \item \textbf{Question} – Supports various types (MCQ, Subjective, True/False). Contains questionID, text, options, correctAnswer, and grading schema.
+    \item \textbf{ExamAttempt} – Records student responses and submission time. Connected one-to-one with Student.
+    \item \textbf{ProctoringModule} – Performs real-time video/audio analysis, logs anomalies, and generates alerts.
+    \item \textbf{GradingModule} – Handles both automated and manual grading workflows.
+    \item \textbf{Report} – Generates result summaries and detailed performance breakdowns. Aggregates results from GradingModule.
+    \item \textbf{Log} – Stores all user actions, system events, and monitoring records for audit trails.
+\end{itemize}
+\vspace{0.5em}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1.15\textwidth]{finalclass diagram .png}
+  \caption{Class Diagram: System Structure}
+  \label{fig:usecase_take_exam}
+\end{figure}
+\vspace{1em}
+
+
+\appendix
+\clearpage
+\section*{Appendix C: To Be Determined (TBD) List}
+
+This section lists items that are currently pending decisions or further clarification in the system's design and implementation.
+
+\vspace{1em}
+
+\textbf{TBD-1: Third-party Proctoring APIs}  
+A decision is pending on whether to integrate external proctoring solutions or develop proprietary real-time monitoring modules in-house.
+
+\vspace{1em}
+
+\textbf{TBD-2: Final Grading Algorithm}  
+Specific rules and weightages for combining subjective and objective scores are yet to be finalized.
+
+\vspace{1em}
+
+\textbf{TBD-3: Exam Export Formats}  
+The supported formats for exam/question data import/export (e.g., Excel, QTI) are under consideration.
+
+\vspace{1em}
+
+\textbf{TBD-4: Notification Methods}  
+The choice between SMS, email, or in-app notifications (or a combination) for alerts and updates is still being evaluated.
+
+\vspace{1em}
+
+\textbf{TBD-5: Language Support}  
+While the initial release will be in English, support for additional languages will be determined based on user demand and regional requirements.
+
+
+
+
+
+\section*{Repository}
+The source code and supporting documents for this project are available at:
+
+\noindent\url{https://github.com/vaibhav-pat/Automated-Exam-Monitoring-and-Grading-System.git}
+
+\end{document}
+
+
+
+
