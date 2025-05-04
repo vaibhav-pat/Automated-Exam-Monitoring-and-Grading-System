@@ -58,7 +58,12 @@ This project aims to automate the **invigilation** and **grading** processes of 
 ```plaintext
 .
 ├── README.md
-├── SRS.doc
+├── SRS.pdf
+├── SRS_overleaf_code.txt
+├── class diagram
+│   ├── class diagram 2.png
+│   ├── class diagram.png
+│   └── finalclass diagram .png
 └── use_cases
     ├── Monitor Exam Session use case.png
     ├── TakeOnlineExam_Usecase.png
